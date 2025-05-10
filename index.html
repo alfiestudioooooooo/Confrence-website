@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Working Conference on Psychoanalytic and Psychodynamic Psychology Education and Training</title>
     <style>
+        body {
+  overflow-x: hidden;
+}
         :root {
             --primary: #2c3e50;
             --secondary: #34495e;
@@ -419,10 +422,45 @@
             }
         }
         
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
+      @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    z-index: 200; /* stays above menu when closed */
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: var(--secondary);
+
+    /* start off-screen */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+
+    z-index: 100;
+  }
+
+  .nav-links.active {
+    /* slide flush into view */
+    transform: translateX(0);
+  }
+
+  .nav-links li {
+    margin: 1rem 0;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+}
             
             .nav-links {
                 position: fixed;
